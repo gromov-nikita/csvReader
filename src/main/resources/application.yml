@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: csvReader
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    topic-name:
+      employee: employee
+      assignment: assignment
+      project: project
+csv:
+  path: D:\internship\kafka
+  file-name:
+    employee: employee.csv
+    assignment: assignment.csv
+    project: project.csv
+scheduler:
+  reader:
+    csv-interval: 300000
