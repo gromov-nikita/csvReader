@@ -34,8 +34,8 @@ public class ReaderScheduler {
     @Scheduled(fixedDelayString = "${scheduler.reader.csv-interval}")
     public void read() {
         handleEmployeeCsv();
-        handleAssignmentCsv();
         handleProjectCsv();
+        handleAssignmentCsv();
     }
     public void handleEmployeeCsv() {
         List<Employee> employee = csvParser.parse(employeeFileName, Employee.class);
