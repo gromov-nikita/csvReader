@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 public class Assignment {
     @CsvBindByName
+    private Integer id;
+    @CsvBindByName
     private Integer projectId;
     @CsvBindByName
     private Integer employeeId;
