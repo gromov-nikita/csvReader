@@ -14,7 +14,7 @@ public class Assignment {
     @CsvBindByName
     private Integer employeeId;
     @CsvBindByName
-    private String start;
+    private String startDate;
     @CsvBindByName
-    private String end;
+    private String endDate;
 }
