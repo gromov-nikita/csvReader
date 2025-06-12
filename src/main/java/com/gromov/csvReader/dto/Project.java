@@ -10,12 +10,12 @@ import lombok.Setter;
 @Setter
 public class Project {
     @CsvBindByName
-    Integer id;
+    private Integer id;
     @CsvBindByName
-    String name;
+    private String name;
     @CsvBindByName
-    String description;
+    private String description;
     @CsvBindByName
-    String domain;
+    private String domain;
 }
 

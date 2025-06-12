@@ -10,11 +10,11 @@ import lombok.Setter;
 @Setter
 public class Employee {
     @CsvBindByName
-    Integer id;
+    private Integer id;
     @CsvBindByName
-    String name;
+    private String name;
     @CsvBindByName
-    String mail;
+    private String mail;
     @CsvBindByName
-    String startWorkDate;
+    private String startWorkDate;
 }
