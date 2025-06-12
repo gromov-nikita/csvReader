@@ -1,11 +1,12 @@
-package com.gromov.csvReader.service;
+package com.gromov.csvReader.service.scheduler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gromov.csvReader.dto.Assignment;
 import com.gromov.csvReader.dto.Employee;
 import com.gromov.csvReader.dto.Project;
-import jakarta.annotation.PostConstruct;
+import com.gromov.csvReader.service.csv.CsvParser;
+import com.gromov.csvReader.service.kafka.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;

@@ -1,4 +1,4 @@
-package com.gromov.csvReader.service;
+package com.gromov.csvReader.service.kafka;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
