@@ -39,16 +39,13 @@ public class ReaderScheduler {
         handleAssignmentCsv();
     }
     public void handleEmployeeCsv() {
-        List<Employee> employee = csvParser.parse(employeeFileName, Employee.class);
-        if (!employee.isEmpty()) kafkaProducerService.send(employeeTopicName,getJson(employee));
+        send(employeeTopicName,csvParser.parse(employeeFileName, Employee.class));
     }
     public void handleAssignmentCsv() {
-        List<Assignment> assignments = csvParser.parse(assignmentFileName, Assignment.class);
-        if (!assignments.isEmpty()) kafkaProducerService.send(assignmentTopicName,getJson(assignments));
+        send(assignmentTopicName,csvParser.parse(assignmentFileName, Assignment.class));
     }
     public void handleProjectCsv() {
-        List<Project> projects = csvParser.parse(projectFileName, Project.class);
-        if (!projects.isEmpty()) kafkaProducerService.send(projectTopicName,getJson(projects));
+        send(projectTopicName,csvParser.parse(projectFileName, Project.class));
     }
     public <T> String getJson(T object) {
         try {
@@ -57,5 +54,7 @@ public class ReaderScheduler {
             throw new RuntimeException(e);
         }
     }
-
+    private <T> void send(String fileName,List<T> group) {
+        if(!group.isEmpty()) kafkaProducerService.send(fileName,getJson(group));
+    }
 }
