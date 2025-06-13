@@ -6,6 +6,7 @@ import com.gromov.csvReader.dto.Assignment;
 import com.gromov.csvReader.dto.Employee;
 import com.gromov.csvReader.dto.Project;
 import com.gromov.csvReader.service.csv.CsvParser;
+import com.gromov.csvReader.service.json.JsonParser;
 import com.gromov.csvReader.service.kafka.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,8 +31,8 @@ public class ReaderScheduler {
     @Value("${spring.kafka.topic-name.project}")
     private String projectTopicName;
     private final CsvParser csvParser;
+    private final JsonParser jsonParser;
     private final KafkaProducerService kafkaProducerService;
-    private static final ObjectMapper objectMapper = new ObjectMapper();
     @Scheduled(fixedDelayString = "${scheduler.reader.csv-interval}")
     public void read() {
         handleEmployeeCsv();
@@ -47,14 +48,7 @@ public class ReaderScheduler {
     public void handleProjectCsv() {
         send(projectTopicName,csvParser.parse(projectFileName, Project.class));
     }
-    public <T> String getJson(T object) {
-        try {
-            return objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
     private <T> void send(String fileName,List<T> group) {
-        if(!group.isEmpty()) kafkaProducerService.send(fileName,getJson(group));
+        if(!group.isEmpty()) kafkaProducerService.send(fileName,jsonParser.getJson(group));
     }
 }
