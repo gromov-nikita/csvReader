@@ -19,3 +19,7 @@ csv:
 scheduler:
   reader:
     csv-interval: 300000
+grpc:
+  server:
+    port: 9091
+    address: "*"
